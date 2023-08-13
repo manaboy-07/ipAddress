@@ -1,6 +1,6 @@
 import React from 'react'
 import Arrow from '../images/icon-arrow.svg'
-export default function Search({ipValue , setIpValue}) {
+export default function Search({ipValue , setIpValue, handleSubmit }) {
     
   return (
     <div className='bg-white p-3 m-2 flex flex-row text-xl'>
