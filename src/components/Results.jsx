@@ -23,7 +23,7 @@ function Results({results}) {
         <li className="flex flex-col m-3 px-6">
           <p className="dark-gray text-xl uppercase">Locations</p>
           <span className="text-black font-bold text-2xl">
-            {`${country}, ${region}`}
+            {`${country} ${region}`}
           </span>
         </li>
 

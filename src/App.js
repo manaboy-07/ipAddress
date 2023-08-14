@@ -6,13 +6,15 @@ import Search from "./components/Search";
 import { fetchIpAddress } from "./utils/fetchIpAddress";
 import backImage from '../src/images/pattern-bg-desktop.png'
 import Results from "./components/Results";
+import Error from "./components/Error";
 function App() {
+  const [loading, setLoading] = useState(false)
   const [ipValue, setIpValue] = useState("");
   const [isIpAddress, setIsIpAddress] = useState(true)
   const [results, setResults] = useState({
-    ip: "8.8.8",
+    ip: "",
     location:{
-      timezone: '12:00',
+      timezone: '',
       country: '',
       region: ''
     },
@@ -58,7 +60,7 @@ function App() {
         handleSubmit={handleSubmit}
       />
       </div>
-      {!isIpAddress &&  <Error/>}
+      {!isIpAddress &&  <Error  setIsIpAddress={setIsIpAddress}/>}
 
       <Results results={results}/>
     </div>
