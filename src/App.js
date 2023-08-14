@@ -7,6 +7,7 @@ import { fetchIpAddress } from "./utils/fetchIpAddress";
 import backImage from '../src/images/pattern-bg-desktop.png'
 import Results from "./components/Results";
 import Error from "./components/Error";
+import Loading from "./components/Loading";
 function App() {
   const [loading, setLoading] = useState(false)
   const [ipValue, setIpValue] = useState("");
@@ -26,8 +27,10 @@ function App() {
     
     const IsAIpAddress = regexExp.test(ipValue);
     if(IsAIpAddress){
+      setLoading(true)
       const data = await fetchIpAddress(ipValue)
       setResults(data)
+      setLoading(false)
     }else{
        setIsIpAddress(false)
     }
@@ -61,6 +64,7 @@ function App() {
       />
       </div>
       {!isIpAddress &&  <Error  setIsIpAddress={setIsIpAddress}/>}
+      {loading && <Loading/>}
 
       <Results results={results}/>
     </div>
