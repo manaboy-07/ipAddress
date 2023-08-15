@@ -34,7 +34,7 @@ function Results({results}) {
 
         <li className="flex flex-col m-3 px-6  mt-4 md:mt-0">
           <p className="dark-gray text-xl uppercase my-2 text-center md:text-start">isp</p>
-          <p className="text-black font-bold text-2xl">{isp}</p>
+          <p className="text-black font-bold text-2xl text-center md:text-start">{isp}</p>
         </li>
         
        

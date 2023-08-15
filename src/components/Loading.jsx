@@ -6,7 +6,7 @@ function Loading() {
   return (
     <div className='overlay'>
       <div className='my-modal flex flex-col justify-center items-center'>
-        <div class='lds-ripple'>
+        <div className='lds-ripple'>
           <div></div>
           <div></div>
         </div>

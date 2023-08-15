@@ -10,21 +10,26 @@ import Error from "./components/Error";
 import Loading from "./components/Loading";
 import Maps from "./components/Maps";
 
-
+const NOMATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
+// const params = {
+//     q: "",
+//     format: "json",
+//     addressdetails: "addressdetails",
+//   };
 function App() {
   const [loading, setLoading] = useState(false);
   const [ipValue, setIpValue] = useState("");
 
   const [isIpAddress, setIsIpAddress] = useState(true);
-
+  const [listPlace, setListPlace] = useState([]);
+  const [lon, setLon] = useState('');
+  const [lat, setLat] = useState('');
   const [results, setResults] = useState({
     ip: "",
     location: {
       timezone: "",
-      country: "London",
+      country: "",
       region: "",
-      latitude: 51.505,
-      longitude: -0.09,
     },
     isp: "",
   });
@@ -39,10 +44,39 @@ function App() {
       const data = await fetchIpAddress(ipValue);
       setResults(data);
       setLoading(false);
+
+      const params = {
+        q: data?.location?.country,
+        format: "json",
+        addressdetails: 1,
+        polygon_geojson: 0,
+      };
+
+      const queryString = new URLSearchParams(params).toString();
+
+      const requestOptions = {
+        method: "GET",
+        redirect: "follow",
+      };
+      fetch(`${NOMATIM_BASE_URL}${queryString}`, requestOptions)
+        .then((res) => res.text())
+        .then((result) => {
+          
+          setListPlace(prevState => JSON.parse(result)[0]);
+          setLat(prevState => JSON.parse(result)[0]?.lon);
+          setLon(prevState => JSON.parse(result)[0]?.lat);
+
+          console.log(
+            `your query name is ${params.q}, your query string is ${queryString}`
+          );
+          
+        })
+        .catch((err) => console.log(err));
     } else {
       setIsIpAddress(false);
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -50,13 +84,10 @@ function App() {
       fetchResults();
       setIpValue("");
     }
+    
   };
-
-  
-
-  console.log(typeof results);
-
-  console.log(results);
+  console.log(`Your latitude is ${lat} and your longitude is ${lon}`)
+  console.log(listPlace)
 
   return (
     <>
@@ -81,7 +112,7 @@ function App() {
         <Results results={results} />
       </div>
       <div>
-       <Maps />
+        <Maps searchText={results.location.country} />
       </div>
     </>
   );

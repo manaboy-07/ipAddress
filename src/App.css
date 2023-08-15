@@ -13,7 +13,7 @@ ul li:not(:last-child)  {
   border-right: 1.5px solid hsl(0, 0%, 50%);
 }
 
-@media screen and (max-width:600px){
+@media only screen and (max-width:600px){
   ul li:not(:last-child)  {
     border-right: none;
   }
@@ -32,7 +32,7 @@ ul li:not(:last-child)  {
   -o-transform: translate(-50%, -50%);
 }
 .overlay {
-  background-color: rgba(0, 0, 0, 0.875);
+  background-color: rgba(0, 0, 0, 0.901);
   position: fixed;
   top: 0;
   z-index: 999;
