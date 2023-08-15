@@ -22,9 +22,10 @@ function App() {
 
   const [isIpAddress, setIsIpAddress] = useState(true);
   const [listPlace, setListPlace] = useState([]);
-  const [lon, setLon] = useState(null);
-  const [lat, setLat] = useState(null);
-  const position = [lat, lon]
+  const [lon, setLon] = useState(-0.09);
+  const [lat, setLat] = useState(51.505);
+  const [position, setPosition] = useState([+lat,+lon ]);
+  // const position = [lat, lon]
   const [results, setResults] = useState({
     ip: "",
     location: {
@@ -34,7 +35,7 @@ function App() {
     },
     isp: "",
   });
-
+ 
   const fetchResults = async () => {
     const regexExp =
       /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
@@ -66,10 +67,9 @@ function App() {
           setListPlace(prevState => JSON.parse(result)[0]);
           setLat(prevState => JSON.parse(result)[0]?.lat);
           setLon(prevState => JSON.parse(result)[0]?.lon);
+         
 
-          console.log(
-            `your query name is ${params.q}, your query string is ${queryString}`
-          );
+         
           
         })
         .catch((err) => console.log(err));
@@ -87,9 +87,13 @@ function App() {
     }
     
   };
-  console.log(`Your latitude is ${lat} and your longitude is ${lon}`)
-  console.log(listPlace)
-  console.log(position)
+
+  useEffect(() => {
+    setPosition(prevState => [+lat, +lon])
+  },[lat, lon])
+ 
+ 
+  
 
   return (
     <>
@@ -114,7 +118,7 @@ function App() {
         <Results results={results} />
       </div>
       <div>
-        <Maps searchText={results.location.country} lat={lat} lon={lon}/>
+        <Maps searchText={results.location.country} position={position}/>
       </div>
     </>
   );

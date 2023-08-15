@@ -1,26 +1,38 @@
 /** @format */
 
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import placeholder from "../images/placeholder.png";
 import L from "leaflet";
-
 
 const icon = L.icon({
   iconUrl: placeholder,
   iconSize: [38, 38],
 });
-
-function Maps({ searchText, lat, lon }) {
-    console.log(searchText)
-   const position = [lat, lon];
-  
-  
+const defaultPosition = [51.505, -0.09];
+function ResetCenterView(props){
+    const {position} = props
+    const map = useMap();
+    useEffect(() => {
+        if(position){
+            map.setView(
+                L.latLng(position[0],position[1]),
+                map.getZoom(),
+                {
+                    animate:true
+                }
+            )
+        }
+    }, [position])
+   return null
+}
+function Maps({ searchText,  position }) {
+ 
   return (
     <MapContainer
-      center={position}
-      zoom={13}
+      center={defaultPosition}
+      zoom={8}
       scrollWheelZoom={false}
       style={{
         width: "100%",
@@ -30,19 +42,17 @@ function Maps({ searchText, lat, lon }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url='https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=crcvUwpApU5pGQpSFtzL'
       />
-      <Marker position={position} icon={icon}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {position && (
+        <Marker position={position} icon={icon}>
+          <Popup>
+           {searchText ? searchText: 'London'}
+          </Popup>
+        </Marker>
+      )}
+      <ResetCenterView position={position}/>
     </MapContainer>
   );
+}
 
- 
-}
-Maps.defaultProps = {
-    lat: 51.505,
-    lon: -0.09
-}
 
 export default Maps;
