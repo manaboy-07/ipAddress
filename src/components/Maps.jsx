@@ -12,9 +12,9 @@ const icon = L.icon({
   iconSize: [38, 38],
 });
 
-function Maps({ searchText }) {
+function Maps({ searchText, lat, lon }) {
     console.log(searchText)
-const position = [51.505, -0.09];
+   const position = [lat, lon];
   
   
   return (
@@ -37,6 +37,12 @@ const position = [51.505, -0.09];
       </Marker>
     </MapContainer>
   );
+
+ 
+}
+Maps.defaultProps = {
+    lat: 51.505,
+    lon: -0.09
 }
 
 export default Maps;

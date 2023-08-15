@@ -22,8 +22,9 @@ function App() {
 
   const [isIpAddress, setIsIpAddress] = useState(true);
   const [listPlace, setListPlace] = useState([]);
-  const [lon, setLon] = useState('');
-  const [lat, setLat] = useState('');
+  const [lon, setLon] = useState(null);
+  const [lat, setLat] = useState(null);
+  const position = [lat, lon]
   const [results, setResults] = useState({
     ip: "",
     location: {
@@ -63,8 +64,8 @@ function App() {
         .then((result) => {
           
           setListPlace(prevState => JSON.parse(result)[0]);
-          setLat(prevState => JSON.parse(result)[0]?.lon);
-          setLon(prevState => JSON.parse(result)[0]?.lat);
+          setLat(prevState => JSON.parse(result)[0]?.lat);
+          setLon(prevState => JSON.parse(result)[0]?.lon);
 
           console.log(
             `your query name is ${params.q}, your query string is ${queryString}`
@@ -88,6 +89,7 @@ function App() {
   };
   console.log(`Your latitude is ${lat} and your longitude is ${lon}`)
   console.log(listPlace)
+  console.log(position)
 
   return (
     <>
@@ -112,7 +114,7 @@ function App() {
         <Results results={results} />
       </div>
       <div>
-        <Maps searchText={results.location.country} />
+        <Maps searchText={results.location.country} lat={lat} lon={lon}/>
       </div>
     </>
   );
