@@ -13,27 +13,27 @@ function Results({results}) {
        
     }}>
       
-      <ul className='list-none result-lists flex justify-between items-start mx-3'>
+      <ul className='list-none result-lists flex justify-center items-center mx-3 flex-col md:flex-row md:justify-between'>
 
-        <li className="flex flex-col m-3 px-6">
-          <p className="dark-gray text-xl uppercase">IP address</p>
+        <li className="flex flex-col m-3 px-6 mt-4 md:mt-0">
+          <p className="dark-gray text-xl uppercase text-center my-2 md:text-start">IP address</p>
           <p className="text-black font-bold text-2xl">{ip}</p>
         </li>
 
-        <li className="flex flex-col m-3 px-6">
-          <p className="dark-gray text-xl uppercase">Locations</p>
+        <li className="flex flex-col m-3 px-6  mt-4 md:mt-0">
+          <p className="dark-gray text-xl uppercase my-2 text-center md:text-start">Locations</p>
           <span className="text-black font-bold text-2xl">
             {`${country} ${region}`}
           </span>
         </li>
 
-        <li className="flex flex-col m-3 px-6">
-          <p className="dark-gray text-xl uppercase">Timezone</p>
+        <li className="flex flex-col m-3 px-6  mt-4 md:mt-0">
+          <p className="dark-gray text-xl my-2 uppercase text-center md:text-starte">Timezone</p>
           <p className="text-black font-bold text-2xl">{timezone}</p>
         </li>
 
-        <li className="flex flex-col m-3 px-6">
-          <p className="dark-gray text-xl uppercase">isp</p>
+        <li className="flex flex-col m-3 px-6  mt-4 md:mt-0">
+          <p className="dark-gray text-xl uppercase my-2 text-center md:text-start">isp</p>
           <p className="text-black font-bold text-2xl">{isp}</p>
         </li>
         

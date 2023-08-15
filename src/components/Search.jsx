@@ -12,7 +12,8 @@ export default function Search({ipValue , setIpValue, handleSubmit }) {
     }}>
       <div>
        <input type="text" style={{
-        fontSize: '14px'
+        fontSize: '14px',
+        width: '140%'
        }} className='outline-none  bg-transparent w-full p-2' placeholder='Search for any IP address or domain' value={ipValue} onChange={(e) => setIpValue(e.target.value)}/>
       </div>
        <button className='bg-black text-white p-2 btn  ' style={{

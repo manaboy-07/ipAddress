@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+*,body,input{
+  font-family: 'Rubik', sans-serif;
+}
+
 .dark-gray{
 color:  hsl(0, 0%, 59%);
 }
 .darker-gray{
   color: hsl(0, 0%, 17%);
 }
- ul li:not(:last-child)  {
+ul li:not(:last-child)  {
   border-right: 1.5px solid hsl(0, 0%, 50%);
+}
+
+@media screen and (max-width:600px){
+  ul li:not(:last-child)  {
+    border-right: none;
+  }
 }
 
 .my-modal {
@@ -74,4 +85,8 @@ color:  hsl(0, 0%, 59%);
     height: 72px;
     opacity: 0;
   }
+}
+.leaflet-container{
+  height:600px;
+  width:100%;
 }
