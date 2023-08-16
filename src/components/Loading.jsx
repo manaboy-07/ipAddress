@@ -4,7 +4,9 @@ import React from "react";
 
 function Loading() {
   return (
-    <div className='overlay'>
+    <div className='overlay' style={{
+      zIndex: 9999
+    }}>
       <div className='my-modal flex flex-col justify-center items-center'>
         <div className='lds-ripple'>
           <div></div>

@@ -24,7 +24,7 @@ function App() {
   const [listPlace, setListPlace] = useState([]);
   const [lon, setLon] = useState(-0.09);
   const [lat, setLat] = useState(51.505);
-  const [position, setPosition] = useState([+lat,+lon ]);
+  const [position, setPosition] = useState([+lat, +lon]);
   // const position = [lat, lon]
   const [results, setResults] = useState({
     ip: "",
@@ -35,7 +35,7 @@ function App() {
     },
     isp: "",
   });
- 
+
   const fetchResults = async () => {
     const regexExp =
       /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
@@ -63,14 +63,9 @@ function App() {
       fetch(`${NOMATIM_BASE_URL}${queryString}`, requestOptions)
         .then((res) => res.text())
         .then((result) => {
-          
-          setListPlace(prevState => JSON.parse(result)[0]);
-          setLat(prevState => JSON.parse(result)[0]?.lat);
-          setLon(prevState => JSON.parse(result)[0]?.lon);
-         
-
-         
-          
+          setListPlace((prevState) => JSON.parse(result)[0]);
+          setLat((prevState) => JSON.parse(result)[0]?.lat);
+          setLon((prevState) => JSON.parse(result)[0]?.lon);
         })
         .catch((err) => console.log(err));
     } else {
@@ -85,15 +80,11 @@ function App() {
       fetchResults();
       setIpValue("");
     }
-    
   };
 
   useEffect(() => {
-    setPosition(prevState => [+lat, +lon])
-  },[lat, lon])
- 
- 
-  
+    setPosition((prevState) => [+lat, +lon]);
+  }, [lat, lon]);
 
   return (
     <>
@@ -118,7 +109,7 @@ function App() {
         <Results results={results} />
       </div>
       <div>
-        <Maps searchText={results.location.country} position={position}/>
+        <Maps searchText={results.location.country} position={position} />
       </div>
     </>
   );

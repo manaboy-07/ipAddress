@@ -7,9 +7,10 @@ function Results({results}) {
   const {ip, isp, location:{timezone, country, region}} = results
 
   return (
-    <div className='shadow-black rounded-md bg-white p-4 m-2 ' style={{
+    <div className='shadow-black rounded-md bg-white p-4 m-2 -mb-12 ' style={{
         border: '0.4px solid  hsl(0, 0%, 59%)',
         boxShadow: '10px 10px 5px -3px rgba(0,0,0,0.63)',
+        zIndex: 999
        
     }}>
       

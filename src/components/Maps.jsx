@@ -36,7 +36,7 @@ function Maps({ searchText,  position }) {
       scrollWheelZoom={false}
       style={{
         width: "100%",
-        height: "62.5vh",
+        height: "75vh",
       }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
